@@ -1,13 +1,7 @@
-from django.shortcuts import render
-from .models import Project
 from rest_framework import generics
 from .models import Board
 from .serializers import BoardSerializer
 from .permissions import IsOwnerOrReadOnly
-
-def dashboard_view(request):
-    projects = Project.objects.filter(owner=request.user)
-    return render(request, 'dashboard.html', {'projects': projects})
 
 class BoardCreateView(generics.CreateAPIView):
     queryset = Board.objects.all()
