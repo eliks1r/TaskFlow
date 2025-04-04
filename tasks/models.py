@@ -29,13 +29,14 @@ class List(models.Model):
         return f"{self.name} ({self.board.name})"
 
 class Task(models.Model):
+    list = models.ForeignKey('List', on_delete=models.CASCADE, related_name='tasks')
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     due_date = models.DateField(null=True, blank=True)
-    list = models.ForeignKey(List, on_delete=models.CASCADE, related_name='tasks')
-    position = models.PositiveIntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-
+    created = models.DateTimeField(auto_now_add=True)
+    
+    # Добавляем вложение файла:
+    attachment = models.FileField(upload_to='attachments/', blank=True, null=True)
     def __str__(self):
         return self.title
 class BoardParticipant(models.Model):
