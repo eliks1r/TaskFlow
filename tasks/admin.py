@@ -9,13 +9,13 @@ class BoardAdmin(admin.ModelAdmin):
 
 @admin.register(List)
 class ListAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'board', 'position')
+    list_display = ('id', 'name', 'board')  # убрала position
     list_filter = ('board',)
     search_fields = ('name',)
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'list', 'due_date', 'position', 'created_at')
+    list_display = ('id', 'title', 'list', 'due_date')  # убрала position и created_at
     list_filter = ('list', 'due_date')
     search_fields = ('title', 'description')
 
