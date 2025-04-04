@@ -38,3 +38,14 @@ class Task(models.Model):
 
     def __str__(self):
         return self.title
+class BoardParticipant(models.Model):
+    class Role(models.IntegerChoices):
+        OWNER = 1, 'Владелец'
+        PARTICIPANT = 2, 'Участник'
+
+    board = models.ForeignKey(Board, on_delete=models.CASCADE, related_name='participants')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    role = models.PositiveSmallIntegerField(choices=Role.choices)
+
+    class Meta:
+        unique_together = ('board', 'user')
