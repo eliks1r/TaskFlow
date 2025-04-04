@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management Dashboard</title>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Helvetica:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="dashboard">
+    <nav class="sidebar">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7aac38bc3fd21ec1cf9ae288cdd1bff8cb12d71fd99ba94e995a74bcfc4aad7?placeholderIfAbsent=true" alt="Dashboard Logo" class="logo">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1c8ae7c3858352eb796cb7260d2a827b7df2c844d86048c7796245d2bbf63734?placeholderIfAbsent=true" alt="Navigation Icon" class="nav-icon">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/b0826112e178b2da235c9590d2a933273cf503b7c0bf163ef92c804eb0136d1f?placeholderIfAbsent=true" alt="Navigation Icon" class="nav-icon">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/ac8ee39615845f8749a310c35749f401bcc3978177f051dd986ce2b670e058e5?placeholderIfAbsent=true" alt="Navigation Icon" class="nav-icon">
+      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6162e08e86711f3c7217d306d91bf7a839660a216be599a24bca66b1e9897621?placeholderIfAbsent=true" alt="Navigation Icon" class="nav-icon">
+    </nav>
+
+    <section class="main-content">
+      <div class="search-container">
+        <p class="search-text">Search</p>
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f0573fc785252a79aa63d7735edb752f10930a7a290747a0182b747e76943bd?placeholderIfAbsent=true" alt="Search Icon" class="search-icon">
+      </div>
+
+      <section class="today-task-section" data-el="div-1">
+        <div class="task-content">
+          <div class="task-info">
+            <h1 class="task-title">Today Task</h1>
+            <p class="task-description">Check your daily tasks and schedules</p>
+            <button class="schedule-button">Today's schedule</button>
+          </div>
+
+          <div class="task-illustration">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3466b6de646647f7d8c8625b3fff055495d888f192a109927a1794cca401f868?placeholderIfAbsent=true" alt="Task Illustration" class="illustration-img">
+          </div>
+        </div>
+      </section>
+
+      <section class="task-cards" data-el="div-2">
+        <div class="cards-container">
+          <article class="task-card">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="card-date-section">
+                  <p class="card-date">Nov 2, 2022</p>
+                  <div class="card-details">
+                    <h3 class="card-title">Web Dashboard</h3>
+                    <p class="card-category">Designing</p>
+                    <p class="progress-label">Progress</p>
+                  </div>
+                </div>
+                <div class="progress-indicator">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/62cf80052331e5dc8694bb7927b581b6eef243b668175c2bda492b210b88b783?placeholderIfAbsent=true" alt="Progress Icon" class="progress-icon">
+                  <p class="progress-percentage">90%</p>
+                </div>
+              </div>
+              <hr class="card-divider">
+              <div class="card-footer">
+                <div class="team-indicators">
+                  <div class="avatar-container">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1b601a1be354abf4069b3eaa43fae5e249230885699f1dfd32b59aba0bb7205c?placeholderIfAbsent=true" alt="Team Member" class="avatar-bg">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1b601a1be354abf4069b3eaa43fae5e249230885699f1dfd32b59aba0bb7205c?placeholderIfAbsent=true" alt="Team Member" class="avatar-img">
+                  </div>
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/9fb8340ab48c82a34b4f0b1ade75d12dcd6ce4ba6ddcafb8bdaddf138294e310?placeholderIfAbsent=true" alt="Add Member" class="add-member">
+                </div>
+                <span class="days-left purple-badge">3 days left</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-card">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="card-date-section">
+                  <p class="card-date">Nov 26, 2022</p>
+                  <div class="card-details">
+                    <h3 class="card-title">Mobile App</h3>
+                    <p class="card-category">Shopping</p>
+                    <p class="progress-label">Progress</p>
+                  </div>
+                </div>
+                <div class="progress-indicator">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/62cf80052331e5dc8694bb7927b581b6eef243b668175c2bda492b210b88b783?placeholderIfAbsent=true" alt="Progress Icon" class="progress-icon">
+                  <p class="progress-percentage">30%</p>
+                </div>
+              </div>
+              <hr class="card-divider">
+              <div class="card-footer">
+                <div class="team-indicators">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/fd74a7c99916c08a725ddde6a14b67b80c7ded40047a2c29802dd6d69ca15415?placeholderIfAbsent=true" alt="Team Member" class="team-avatar">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e18ffc42a00b6928cee9f8e8efffc71fb02038d956479cb1faac7ef09ab2a7dc?placeholderIfAbsent=true" alt="Add Member" class="add-member">
+                </div>
+                <span class="days-left blue-badge">25 days left</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="task-card">
+            <div class="card-content">
+              <div class="card-header">
+                <div class="card-date-section">
+                  <p class="card-date">Nov 2, 2022</p>
+                  <div class="card-details">
+                    <h3 class="card-title">Animate Illustration</h3>
+                    <p class="card-category">Designing</p>
+                  </div>
+                </div>
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/62cf80052331e5dc8694bb7927b581b6eef243b668175c2bda492b210b88b783?placeholderIfAbsent=true" alt="Progress Icon" class="progress-icon">
+              </div>
+              <div class="progress-row">
+                <p class="progress-label">Progress</p>
+                <p class="progress-percentage">75%</p>
+              </div>
+              <hr class="card-divider">
+              <div class="card-footer">
+                <div class="team-indicators">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/256c6e20a01784d82d08e0c33644b0ed1c6c43da005305f606d0c63745678395?placeholderIfAbsent=true" alt="Team Member" class="team-avatar">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/8a9a5143ba53cfcd1e23013935bd62e0bbaff8e4ceb91066af2352d2cbd40671?placeholderIfAbsent=true" alt="Add Member" class="add-member">
+                </div>
+                <span class="days-left orange-badge">7 days left</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="dashboard-stats" data-el="div-3">
+        <div class="stats-container">
+          <div class="tasks-completed">
+            <div class="stats-header">
+              <h3 class="stats-title">Tasks Completed</h3>
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/664e9b205ace73cde58997a6da59948815706248c7f207c7ebb2c74543328c5e?placeholderIfAbsent=true" alt="More Options" class="more-options">
+            </div>
+            <hr class="stats-divider">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc58276fbfe1d0f4bb21d77775fe5f17ece2cc96988b18bab7e90f8965c02a36?placeholderIfAbsent=true" alt="Tasks Completion Chart" class="stats-chart">
+          </div>
+
+          <div class="team-members-section">
+            <h3 class="team-title">Team Members</h3>
+            <div class="member-card">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3ada36ca4efe4b93fe44feeef378a2bc2e991063ce00d806b4433e1dcb591efd?placeholderIfAbsent=true" alt="Ali Ahmad" class="member-avatar">
+              <div>
+                <h4 class="member-name">Ali Ahmad</h4>
+                <p class="member-role">UI Designer</p>
+              </div>
+            </div>
+            <div class="member-card">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3552a09f3b3827d320fe28203d3c436903e8d82edcb763da699541930eb729fd?placeholderIfAbsent=true" alt="Maria Memon" class="member-avatar">
+              <div class="member-info">
+                <h4 class="member-name">Maria Memon</h4>
+                <p class="member-role">UI/UX Designer</p>
+              </div>
+            </div>
+            <div class="member-card">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/97c47a68d6886c7d61bfafb9a2a4b8795a913a2b5c892d8db724b2886d22c220?placeholderIfAbsent=true" alt="Maria Memon" class="member-avatar">
+              <div class="member-info">
+                <h4 class="member-name">Maria Memon</h4>
+                <p class="member-role">UI/UX Designer</p>
+              </div>
+            </div>
+            <button class="see-all-button">See all</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <aside class="profile-sidebar">
+      <div class="profile-header">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/02043a13d1383ea78ed99404f80cdb4e3a04f26bb48a4b77b4fcf079779e228a?placeholderIfAbsent=true" alt="Profile Picture" class="profile-picture">
+        <h3 class="profile-name">Rimsha Khan</h3>
+      </div>
+      <hr class="profile-divider">
+      <h2 class="agency-title">We are design agency work with you</h2>
+      <p class="agency-description">Bringing well crafted design and scalable infrastructure</p>
+      <button class="hire-button">Hire us</button>
+    </aside>
+
+    <aside class="calendar-sidebar">
+      <div class="calendar-container">
+        <h3 class="calendar-title">November 2022</h3>
+        <div class="calendar-widget">
+          <div class="calendar-grid">
+            <div class="weekday-row">
+              <span class="weekday">Mon</span>
+              <span class="weekday">Tue</span>
+              <span class="weekday">Wed</span>
+              <span class="weekday">Thu</span>
+              <span class="weekday">Fri</span>
+              <span class="weekday">Sat</span>
+              <span class="weekday">Sun</span>
+            </div>
+            <div class="date-row">
+              <span class="date prev-month">29</span>
+              <span class="date prev-month">30</span>
+              <span class="date prev-month">31</span>
+              <span class="date">01</span>
+              <span class="date">02</span>
+              <span class="date">03</span>
+              <span class="date">04</span>
+            </div>
+            <div class="date-row">
+              <span class="date">05</span>
+              <span class="date">06</span>
+              <span class="date">07</span>
+              <span class="date selected">08</span>
+              <span class="date">09</span>
+              <span class="date">10</span>
+              <span class="date">11</span>
+            </div>
+            <div class="date-row">
+              <span class="date">12</span>
+              <span class="date">13</span>
+              <span class="date">14</span>
+              <span class="date">15</span>
+              <span class="date">16</span>
+              <span class="date active">17</span>
+              <span class="date">18</span>
+            </div>
+            <div class="date-row">
+              <span class="date">19</span>
+              <span class="date">20</span>
+              <span class="date">21</span>
+              <span class="date">22</span>
+              <span class="date">23</span>
+              <span class="date">24</span>
+              <span class="date">25</span>
+            </div>
+            <div class="date-row">
+              <span class="date">26</span>
+              <span class="date">27</span>
+              <span class="date">28</span>
+              <span class="date">29</span>
+              <span class="date">30</span>
+              <span class="date next-month">01</span>
+              <span class="date next-month">02</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    (() => {
+      const state = {};
+
+      let context = null;
+      let nodesToDestroy = [];
+      let pendingUpdate = false;
+
+      function destroyAnyNodes() {
+        // destroy current view template refs before rendering again
+        nodesToDestroy.forEach((el) => el.remove());
+        nodesToDestroy = [];
+      }
+
+      // Function to update data bindings and loops
+      // call update() when you mutate state and need the updates to reflect
+      // in the dom
+      function update() {
+        if (pendingUpdate === true) {
+          return;
+        }
+        pendingUpdate = true;
+
+        document.querySelectorAll("[data-el='div-1']").forEach((el) => {
+          el.setAttribute("space", 220);
+        });
+
+        document.querySelectorAll("[data-el='div-2']").forEach((el) => {
+          el.setAttribute("space", 22);
+        });
+
+        document.querySelectorAll("[data-el='div-3']").forEach((el) => {
+          el.setAttribute("space", 19);
+        });
+
+        destroyAnyNodes();
+
+        pendingUpdate = false;
+      }
+
+      // Update with initial state on first load
+      update();
+    })();
+  </script>
+</body>
+</html>
