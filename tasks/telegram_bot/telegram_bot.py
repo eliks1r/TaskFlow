@@ -14,7 +14,7 @@ from users.models import CustomUser  # Импорт кастомного пол�
 
 
 # Токен Telegram-бота
-TOKEN = "7681865799:AAEjlyvoTKD93RMVGAryy2JrXfU5Ao6vnjI"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 
 # Ключ OpenAI
