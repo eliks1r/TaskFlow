@@ -2,6 +2,10 @@ from rest_framework import generics
 from .models import Board, Task
 from .serializers import BoardSerializer, TaskSerializer
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.views import APIView
+from rest_framework.response import Response
+import openai
+import os
 
 class BoardCreateView(generics.CreateAPIView):
     queryset = Board.objects.all()
@@ -44,3 +48,11 @@ class TaskUpdateView(generics.UpdateAPIView):
 class TaskDeleteView(generics.DestroyAPIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
+    
+class AIDescriptionView(APIView):
+    def post(self, request):
+        title = request.data.get("title", "")
+        if not title:
+            return Response({"error": "title is required"}, status=400)
+        description = generate_task_description(title)
+        return Response({"title": title, "description": description})

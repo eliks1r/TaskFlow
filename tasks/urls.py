@@ -10,6 +10,7 @@ from .views import (
     TaskDetailView,
     TaskUpdateView,
     TaskDeleteView,
+    AIDescriptionView,
 )
 
 urlpatterns = [
@@ -24,4 +25,8 @@ urlpatterns = [
     path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
     path('tasks/<int:pk>/update/', TaskUpdateView.as_view(), name='task-update'),
     path('tasks/<int:pk>/delete/', TaskDeleteView.as_view(), name='task-delete'),
+]
+
+urlpatterns += [
+    path('ai/generate-description/', AIDescriptionView.as_view(), name='ai-generate-description'),
 ]
