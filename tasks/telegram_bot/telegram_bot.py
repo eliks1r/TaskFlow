@@ -67,3 +67,5 @@ def generate_ai_description(title):
 if __name__ == '__main__':
     print("🤖 Бот запущен")
     bot.polling()
+
+

@@ -6,6 +6,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 import openai
 import os
+from django.db.models import Count, Q
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
 class BoardCreateView(generics.CreateAPIView):
     queryset = Board.objects.all()
@@ -56,3 +59,21 @@ class AIDescriptionView(APIView):
             return Response({"error": "title is required"}, status=400)
         description = generate_task_description(title)
         return Response({"title": title, "description": description})
+
+class TaskAnalyticsView(APIView):
+    def get(self, request):
+        from .models import Board
+
+        data = []
+        boards = Board.objects.all()
+        for board in boards:
+            completed = board.tasks.filter(is_completed=True).count()
+            not_completed = board.tasks.filter(is_completed=False).count()
+
+            data.append({
+                'board': board.name,
+                'completed': completed,
+                'not_completed': not_completed
+            })
+
+        return Response(data)

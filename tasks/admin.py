@@ -1,5 +1,9 @@
 from django.contrib import admin
 from .models import Board, List, Task, Project
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import Task
+
 
 @admin.register(Board)
 class BoardAdmin(admin.ModelAdmin):
