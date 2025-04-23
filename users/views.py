@@ -1,6 +1,18 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import RegisterForm, LoginForm
+from django.shortcuts import render
+
+
+def my_view(request):
+    if request.method == 'POST':
+        # обработка формы
+        pass
+    return render(request, 'users/register.html', context)
+
+
+def dashboard_view(request):
+    return render(request, 'dashboard.html')  # Убедись, что шаблон существует
 
 def register_view(request):
     if request.method == 'POST':
@@ -11,7 +23,7 @@ def register_view(request):
             return redirect('dashboard')
     else:
         form = RegisterForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'users/register.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
