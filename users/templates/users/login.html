@@ -1,71 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TaskFlow - Login</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - TaskFlow</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      body {
-        background: linear-gradient(135deg, #ede9fe, #fff);
-      }
-      .glass {
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-      }
+        body {
+            background: linear-gradient(135deg, #ede9fe, #fff);
+        }
     </style>
-  </head>
-  <body class="min-h-screen font-sans text-gray-800">
-    <!-- Navigation -->
-    <header class="bg-white/90 shadow-md p-5 flex justify-between items-center sticky top-0 z-50 backdrop-blur">
-      <h1 class="text-3xl font-extrabold text-purple-700 tracking-tight">TaskFlow</h1>
-      <nav class="space-x-6">
-        <a href="{% url 'login' %}" class="text-gray-700 hover:text-purple-600 font-medium">Login</a>
-        <a href="{% url 'register' %}" class="text-gray-700 hover:text-purple-600 font-medium">Register</a>
-      </nav>
-    </header>
-
+</head>
+<body class="min-h-screen font-sans text-gray-800">
     <!-- Login Section -->
     <section id="login" class="min-h-screen flex items-center justify-center px-4">
-      <div class="glass p-10 rounded-3xl shadow-2xl w-full max-w-lg border border-purple-200">
-        <h2 class="text-4xl font-extrabold text-center mb-6 text-purple-800">Welcome Back 👋</h2>
-        
-        <!-- Login Form -->
-        <form action="{% url 'login' %}" method="POST" class="space-y-6">
-          {% csrf_token %}
-          <div>
-            <label class="block text-gray-700 mb-1 font-semibold">Email</label>
-            <input type="email" name="username" placeholder="Your email"
-                   class="w-full border border-purple-300 rounded-xl px-4 py-3 bg-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400" required />
-          </div>
-          <div>
-            <label class="block text-gray-700 mb-1 font-semibold">Password</label>
-            <input type="password" name="password" placeholder="Your password"
-                   class="w-full border border-purple-300 rounded-xl px-4 py-3 bg-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400" required />
-          </div>
-          <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold shadow-md">
-            Login
-          </button>
-        </form>
-        
-        <!-- Google Sign-In -->
-        <div id="g_id_onload"
-             data-client_id="YOUR_GOOGLE_CLIENT_ID"
-             data-login_uri="/auth/google"
-             data-auto_prompt="false">
+        <div class="glass p-10 rounded-3xl shadow-2xl w-full max-w-lg border border-purple-200">
+            <h2 class="text-4xl font-extrabold text-center mb-6 text-purple-800">Welcome Back 👋</h2>
+
+            <!-- Login Form -->
+            <form action="{% url 'login' %}" method="POST" class="space-y-6">
+                {% csrf_token %}
+                <div>
+                    <label class="block text-gray-700 mb-1 font-semibold">Email</label>
+                    <input type="email" name="username" placeholder="Your email"
+                           class="w-full border border-purple-300 rounded-xl px-4 py-3 bg-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400" required />
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-1 font-semibold">Password</label>
+                    <input type="password" name="password" placeholder="Your password"
+                           class="w-full border border-purple-300 rounded-xl px-4 py-3 bg-white/70 focus:outline-none focus:ring-2 focus:ring-purple-400" required />
+                </div>
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl font-bold shadow-md">
+                    Login
+                </button>
+            </form>
+            <p class="text-center text-sm text-gray-600 mt-4">
+                Don't have an account? 
+                <a href="{% url 'register' %}" class="text-purple-500 hover:underline font-medium">Register here</a>
+            </p>
         </div>
-        <div class="g_id_signin" data-type="standard" data-theme="outline" data-size="large" data-logo_alignment="center"></div>
-
-        <p class="text-center text-sm text-gray-600 mt-4">
-          Don't have an account? 
-          <a href="{% url 'register' %}" class="text-purple-500 hover:underline font-medium">Register here</a>
-        </p>
-      </div>
     </section>
-
-    <footer class="text-center text-purple-500 text-sm py-6">
-      &copy; 2025 TaskFlow. Built with 💜 by your team.
-    </footer>
-  </body>
+</body>
 </html>

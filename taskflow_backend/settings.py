@@ -12,6 +12,16 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yourdomain.com']
 
 # User model
 AUTH_USER_MODEL = 'users.CustomUser'
+# taskflow_backend/settings.py
+
+LOGIN_REDIRECT_URL = 'home'  # Убедись, что это имя URL главной страницы
+
+
+# taskflow_backend/settings.py
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -42,7 +52,7 @@ ROOT_URLCONF = 'taskflow_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # Эта строка указывает на вашу папку с шаблонами
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

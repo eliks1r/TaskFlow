@@ -10,6 +10,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser  # Убедитесь, что импортируете CustomUser
+from django.contrib.auth.forms import AuthenticationForm
+from django import forms
 
 
 class LoginForm(AuthenticationForm):
@@ -31,3 +33,7 @@ class RegisterForm(UserCreationForm):
     class Meta:
         model = CustomUser  # Используйте CustomUser вместо User
         fields = ['username', 'email', 'full_name', 'password1', 'password2']
+        
+class LoginForm(AuthenticationForm):
+    username = forms.EmailField(label="Email")
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)

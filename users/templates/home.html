@@ -39,14 +39,7 @@
 
       <!-- Main Content Section -->
       <section class="main-content flex-1">
-        <!-- Search Section -->
-        <div class="search-container mb-6 flex justify-between items-center">
-          <h2 class="text-3xl font-extrabold text-purple-800">Welcome, {{ user.username }}!</h2>
-          <div class="search-container flex items-center space-x-4">
-            <p class="search-text text-gray-600">Search</p>
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f0573fc785252a79aa63d7735edb752f10930a7a290747a0182b747e76943bd?placeholderIfAbsent=true" alt="Search Icon" class="search-icon h-6 w-6">
-          </div>
-        </div>
+        <h2 class="text-3xl font-extrabold text-purple-800">Welcome, {{ user.username }}!</h2>
 
         <!-- Today Tasks Section -->
         <section class="today-task-section mb-8">
@@ -56,7 +49,6 @@
               <p class="task-description text-gray-600">Check your daily tasks and schedules.</p>
               <button class="schedule-button bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-bold shadow-md">Today's Schedule</button>
             </div>
-
             <div class="task-illustration">
               <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3466b6de646647f7d8c8625b3fff055495d888f192a109927a1794cca401f868?placeholderIfAbsent=true" alt="Task Illustration" class="illustration-img h-36">
             </div>
