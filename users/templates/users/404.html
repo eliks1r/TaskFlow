@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen flex justify-center items-center bg-gradient-to-r from-purple-300 to-blue-300">
+    <div class="glass p-10 rounded-3xl shadow-2xl w-full max-w-lg border border-purple-200">
+      <h2 class="text-4xl font-extrabold text-center mb-6 text-purple-800">Page Not Found 😢</h2>
+      <p class="text-center text-xl text-gray-700">{{ message }}</p>
+      <div class="text-center mt-6">
+        <a href="{% url 'home' %}" class="text-purple-600 hover:text-purple-700 font-medium">Back to Home</a>
+      </div>
+    </div>
+  </body>
+</html>

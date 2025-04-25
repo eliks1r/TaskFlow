@@ -1,29 +1,30 @@
-from django.conf import settings    
-from django.contrib.auth.models import AbstractUser
+# users/models.py
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
-from django.contrib.auth import get_user_model
+from tasks.models import Board  # Импортируем модель Board из приложения tasks
+from django.conf import settings
 
 
+# Промежуточная модель для Many-to-Many связи
+class CustomUserGroup(models.Model):
+    user = models.ForeignKey('CustomUser', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['user', 'group']  # Уникальность для каждой пары (пользователь, группа)
+
+    def __str__(self):
+        return f"{self.user} - {self.group}"
+
+# Кастомная модель пользователя
 class CustomUser(AbstractUser):
+    full_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    full_name = models.CharField(max_length=255)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'full_name']
+    # Связь Many-to-Many с группами через промежуточную модель
+    groups = models.ManyToManyField(Group, through=CustomUserGroup, related_name="customuser_set", blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name="customuser_set", blank=True)
 
     def __str__(self):
         return self.email
 
-# tasks/models.py
-
-class Task(models.Model):
-    ...
-    is_completed = models.BooleanField(default=False)
-    board = models.ForeignKey('Board', on_delete=models.CASCADE, related_name='tasks')
-
-class Board(models.Model):
-    title = models.CharField(max_length=255)
-    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.title

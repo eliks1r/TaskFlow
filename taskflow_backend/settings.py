@@ -4,14 +4,13 @@ from pathlib import Path
 
 load_dotenv()
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-x5+g86ov!%^e7nrk9o#6vvi_m597oe8atmvqksm0_@6f3jl#*2'
+SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'yourdomain.com']
 
-# Custom user model
+# User model
 AUTH_USER_MODEL = 'users.CustomUser'
 
 # Application definition
@@ -43,7 +42,7 @@ ROOT_URLCONF = 'taskflow_backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -58,7 +57,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'taskflow_backend.wsgi.application'
 
-# Database
+# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -78,21 +77,37 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# Internationalization
+# Localization
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
+# CSRF Protection
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
+CSRF_COOKIE_SECURE = True  # Установите в True для безопасности
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
+LOGIN_REDIRECT_URL = '/home/'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'default-secret-key')
+
+
 # Static files
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+# Default auto field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
 
-# OpenAI key (optional)
+# Redirect settings
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home/'
+LOGOUT_REDIRECT_URL = '/login/'
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+# OpenAI API Key (optional)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

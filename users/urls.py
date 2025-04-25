@@ -1,12 +1,8 @@
-# taskflow/urls.py
-from django.contrib import admin
-from django.urls import path, include
-from users.views import register_view, login_view, logout_view
-from users.views import dashboard_view
+from django.urls import path
+from . import views
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('register/', register_view, name='register'),
-    path('login/', login_view, name='login'),
-    path('logout/', logout_view, name='logout'),
-    path('', dashboard_view, name='dashboard'),
+    path('home/', views.home_view, name='home'),
+    path('register/', views.register_view, name='register'),  # Убедитесь, что путь для регистрации правильный
+    path('login/', views.login_view, name='login'),
 ]

@@ -1,9 +1,5 @@
 from django.contrib import admin
-from .models import Board, List, Task, Project
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import Task
-
+from .models import Board, Task, Project, TaskList, BoardParticipant
 
 @admin.register(Board)
 class BoardAdmin(admin.ModelAdmin):
@@ -11,11 +7,17 @@ class BoardAdmin(admin.ModelAdmin):
     list_filter = ('owner',)
     search_fields = ('name',)
 
-@admin.register(List)
-class ListAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'board')  # убрала position
+@admin.register(TaskList)
+class TaskListAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'board')
     list_filter = ('board',)
     search_fields = ('name',)
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ['id', 'title', 'created', 'status']
+    list_filter = ['status', 'created']
+    search_fields = ['title']
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
@@ -23,7 +25,8 @@ class ProjectAdmin(admin.ModelAdmin):
     list_filter = ('status',)
     search_fields = ('name',)
 
-@admin.register(Task)
-class TaskAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'created', 'status']  # исправлено: created вместо created_at
-    list_filter = ['created', 'status']
+@admin.register(BoardParticipant)
+class BoardParticipantAdmin(admin.ModelAdmin):
+    list_display = ['board', 'user', 'role']
+    list_filter = ['role']
+    search_fields = ['user__username']

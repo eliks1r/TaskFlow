@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: linear-gradient(135deg, #ede9fe, #fff);
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen font-sans text-gray-800">
+    <!-- Navigation -->
+    <header class="bg-white/90 shadow-md p-5 flex justify-between items-center sticky top-0 z-50 backdrop-blur">
+      <h1 class="text-3xl font-extrabold text-purple-700 tracking-tight">TaskFlow</h1>
+      <nav class="space-x-6">
+        <a href="{% url 'logout' %}" class="text-gray-700 hover:text-purple-600 font-medium">Logout</a>
+      </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="flex p-6 gap-8">
+      <!-- Sidebar Section -->
+      <nav class="sidebar bg-white/80 p-6 rounded-lg shadow-xl flex flex-col gap-8">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/d7aac38bc3fd21ec1cf9ae288cdd1bff8cb12d71fd99ba94e995a74bcfc4aad7?placeholderIfAbsent=true" alt="Dashboard Logo" class="logo mb-4">
+        <div class="nav-links flex flex-col space-y-4">
+          <a href="#todayTasks" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Today’s Tasks</a>
+          <a href="#taskCards" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Task Cards</a>
+          <a href="#calendar" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Calendar</a>
+        </div>
+      </nav>
+
+      <!-- Main Content Section -->
+      <section class="main-content flex-1">
+        <!-- Search Section -->
+        <div class="search-container mb-6 flex justify-between items-center">
+          <h2 class="text-3xl font-extrabold text-purple-800">Welcome, {{ user.username }}!</h2>
+          <div class="search-container flex items-center space-x-4">
+            <p class="search-text text-gray-600">Search</p>
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f0573fc785252a79aa63d7735edb752f10930a7a290747a0182b747e76943bd?placeholderIfAbsent=true" alt="Search Icon" class="search-icon h-6 w-6">
+          </div>
+        </div>
+
+        <!-- Today Tasks Section -->
+        <section class="today-task-section mb-8">
+          <div class="task-content flex justify-between items-center">
+            <div class="task-info">
+              <h1 class="task-title text-2xl font-semibold text-purple-800">Today’s Tasks</h1>
+              <p class="task-description text-gray-600">Check your daily tasks and schedules.</p>
+              <button class="schedule-button bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-xl font-bold shadow-md">Today's Schedule</button>
+            </div>
+
+            <div class="task-illustration">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/3466b6de646647f7d8c8625b3fff055495d888f192a109927a1794cca401f868?placeholderIfAbsent=true" alt="Task Illustration" class="illustration-img h-36">
+            </div>
+          </div>
+        </section>
+
+        <!-- Task Cards Section -->
+        <section id="taskCards" class="task-cards mb-8">
+          <div class="cards-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Task Card Example -->
+            <article class="task-card bg-white p-6 rounded-lg shadow-xl hover:shadow-2xl transition">
+              <div class="card-header mb-4 flex justify-between items-center">
+                <div class="card-date-section">
+                  <p class="card-date text-sm text-gray-500">Nov 2, 2022</p>
+                  <h3 class="card-title text-xl font-semibold text-purple-800">Web Dashboard</h3>
+                  <p class="card-category text-sm text-gray-500">Designing</p>
+                </div>
+                <div class="progress-indicator flex items-center">
+                  <p class="progress-percentage text-lg font-semibold text-purple-600">90%</p>
+                </div>
+              </div>
+              <hr class="card-divider mb-4">
+              <div class="card-footer flex justify-between items-center">
+                <span class="days-left bg-purple-200 text-purple-600 text-sm font-semibold py-1 px-2 rounded-full">3 days left</span>
+                <div class="team-indicators flex space-x-2">
+                  <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/1b601a1be354abf4069b3eaa43fae5e249230885699f1dfd32b59aba0bb7205c?placeholderIfAbsent=true" alt="Team Member" class="team-avatar w-8 h-8 rounded-full">
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Calendar Section -->
+        <section id="calendar" class="calendar-section mb-8">
+          <div class="calendar-container bg-white p-6 rounded-lg shadow-xl">
+            <h3 class="calendar-title text-2xl font-semibold text-purple-800 mb-4">November 2022</h3>
+            <div class="calendar-grid grid grid-cols-7 gap-4 text-center text-sm text-gray-600">
+              <span class="weekday">Mon</span>
+              <span class="weekday">Tue</span>
+              <span class="weekday">Wed</span>
+              <span class="weekday">Thu</span>
+              <span class="weekday">Fri</span>
+              <span class="weekday">Sat</span>
+              <span class="weekday">Sun</span>
+
+              <div class="date-cell">29</div>
+              <div class="date-cell">30</div>
+              <div class="date-cell">1</div>
+              <div class="date-cell">2</div>
+              <div class="date-cell">3</div>
+              <div class="date-cell">4</div>
+              <div class="date-cell">5</div>
+
+              <!-- Repeat for other dates -->
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="text-center text-purple-500 text-sm py-6">
+      &copy; 2025 TaskFlow. Built with 💜 by your team.
+    </footer>
+  </body>
+</html>
