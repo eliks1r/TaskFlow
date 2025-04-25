@@ -1,5 +1,9 @@
+# users/models.py
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.db import models
+from tasks.models import Board  # Импортируем модель Board из приложения tasks
+from django.conf import settings
+
 
 # Промежуточная модель для Many-to-Many связи
 class CustomUserGroup(models.Model):
@@ -23,3 +27,4 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.email
+

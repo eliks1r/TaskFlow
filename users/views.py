@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 
 
 # Представление для регистрации
@@ -44,5 +45,11 @@ from django.contrib.auth.decorators import login_required
 def home_view(request):
     return render(request, 'home.html')  # Отображаем главную страниц
 
+@login_required
 def task_view(request):
     return render(request, 'users/task.html')  # Убедитесь, что путь верен
+
+@login_required
+def profile_view(request):
+    return render(request, 'users\profile.html')
+

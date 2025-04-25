@@ -9,4 +9,6 @@ urlpatterns = [
     path('auth/register/', register_view, name='register'),
     path('home/', home_view, name='home'),  # Это URL для главной страницы
     path('auth/logout/', logout_view, name='logout'),  # Путь для выхода
+    path('auth/', include('users.urls')),  # Убедитесь, что это добавлено
+
 ]
