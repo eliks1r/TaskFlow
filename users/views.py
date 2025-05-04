@@ -5,6 +5,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import RegisterForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.shortcuts import render
+from tasks.models import Task
+
+
 
 
 # Представление для регистрации
@@ -53,3 +58,19 @@ def task_view(request):
 def profile_view(request):
     return render(request, 'users\profile.html')
 
+def calendar_view(request):
+    return render(request, 'users/calendar.html')
+
+def calendar_tasks(request):
+    tasks = Task.objects.all()
+    data = []
+
+    for task in tasks:
+        if task.deadline:  # предполагаем, что в модели Task есть поле deadline (DateField или DateTimeField)
+            data.append({
+                "title": task.title,
+                "start": task.deadline.strftime('%Y-%m-%d'),
+                "url": f"/task/{task.id}/"  # адаптируй под свой путь, если другой
+            })
+
+    return JsonResponse(data, safe=False)

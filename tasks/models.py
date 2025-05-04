@@ -11,7 +11,8 @@ class TaskList(models.Model):
 
 # Task Model
 class Task(models.Model):
-    task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, related_name='tasks')  
+    task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE, related_name='tasks')
+    task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE) 
     title = models.CharField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     status = models.CharField(

@@ -367,3 +367,38 @@
     text-decoration: line-through;
   }
   
+  /* Gradient button */
+.btn-gradient {
+  @apply px-4 py-2 rounded-full text-white font-semibold shadow-md transition-all duration-300;
+  background: linear-gradient(to right, #7f5af0, #b983ff);
+}
+.btn-gradient:hover {
+  background: linear-gradient(to right, #a56bff, #c69eff);
+  transform: scale(1.05);
+}
+
+/* Glowing button for call to action */
+.btn-glow {
+  @apply px-6 py-3 rounded-full text-white font-bold text-lg shadow-lg transition-all duration-300;
+  background: linear-gradient(90deg, #7c3aed 0%, #a78bfa 100%);
+  box-shadow: 0 0 20px #a78bfa;
+}
+.btn-glow:hover {
+  background: linear-gradient(90deg, #9f7aea 0%, #c4b5fd 100%);
+  box-shadow: 0 0 25px #c4b5fd;
+  transform: scale(1.05);
+}
+
+/* Feature card */
+.card-feature {
+  @apply bg-white rounded-2xl shadow-md p-6 transition-transform duration-300;
+}
+.card-feature:hover {
+  transform: translateY(-5px);
+}
+.card-feature h3 {
+  @apply text-violet-600 font-bold text-xl mb-2;
+}
+.card-feature p {
+  @apply text-gray-600;
+}

@@ -1,14 +1,16 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'task/task.css' %}">
-  <script src="{% static 'task/script.js' %}" defer></script>
-</head> 
+  <head>
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/main.min.js'></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'task/task.css' %}">
+    <script src="{% static 'task/script.js' %}" defer></script>
+  </head> 
 <body>
   <div class="dashboard-container">
     <nav class="category-nav">
@@ -120,3 +122,23 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+<div id="mini-calendar" class="bg-white rounded-2xl shadow p-4 mt-6 w-full max-w-md mx-auto"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('mini-calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      height: 400,
+      headerToolbar: {
+        left: 'title',
+        right: 'today prev,next'
+      },
+      dateClick: function (info) {
+        window.location.href = `/calendar/?date=${info.dateStr}`;
+      }
+    });
+    calendar.render();
+  });
+</script>
