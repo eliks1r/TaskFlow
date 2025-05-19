@@ -6,24 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile - TaskFlow</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
   </head>
-  <body class="min-h-screen font-sans text-gray-800">
+  <body class="min-h-screen font-sans bg-gradient-to-br from-white via-violet-100 to-purple-200 text-gray-800">
+    <!-- Header -->
     <header class="bg-white/90 shadow-md p-5 flex justify-between items-center sticky top-0 z-50 backdrop-blur-md">
       <h1 class="text-3xl font-extrabold text-purple-700 tracking-tight">TaskFlow</h1>
       <nav class="space-x-6">
+        <a href="/auth/home/" class="text-gray-700 hover:text-purple-600 font-medium">Dashboard</a>
         <a href="{% url 'logout' %}" class="text-gray-700 hover:text-purple-600 font-medium">Logout</a>
       </nav>
     </header>
 
     <!-- Profile Section -->
-    <section class="profile-section p-8">
-      <h2 class="text-3xl font-extrabold text-purple-800">Your Profile</h2>
-      <div class="profile-info mt-6">
-        <p class="text-lg">Username: {{ user.username }}</p>
-        <p class="text-lg">Email: {{ user.email }}</p>
+    <section class="p-8 max-w-3xl mx-auto bg-white/70 backdrop-blur-xl mt-10 rounded-3xl shadow-xl border border-purple-200">
+      <div class="flex items-center gap-6">
+        <img src="https://avatars.githubusercontent.com/u/583231?v=4" alt="Avatar" class="w-24 h-24 rounded-full border-4 border-purple-400 shadow-md" />
+        <div>
+          <h2 class="text-3xl font-extrabold text-purple-800">{{ user.username }}</h2>
+          <p class="text-gray-600">{{ user.email }}</p>
+          <button class="mt-2 bg-purple-100 text-purple-700 text-sm px-4 py-1 rounded hover:bg-purple-200">Change Password</button>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="mt-8">
+        <label for="bio" class="block font-semibold text-purple-800 mb-2">Bio</label>
+        <textarea id="bio" name="bio" rows="3" class="w-full border border-purple-300 rounded p-3" placeholder="Tell us about yourself..."></textarea>
+        <button class="mt-2 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Save Bio</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-purple-50 p-6 rounded-lg shadow text-center">
+          <p class="text-2xl font-bold text-purple-700">12</p>
+          <p class="text-sm text-gray-600">Tasks Completed</p>
+        </div>
+        <div class="bg-purple-50 p-6 rounded-lg shadow text-center">
+          <p class="text-2xl font-bold text-purple-700">8</p>
+          <p class="text-sm text-gray-600">Pomodoro Sessions</p>
+        </div>
+        <div class="bg-purple-50 p-6 rounded-lg shadow text-center">
+          <p class="text-2xl font-bold text-purple-700">Pro User</p>
+          <p class="text-sm text-gray-600">Plan</p>
+        </div>
+      </div>
+
+      <!-- Bonus -->
+      <div class="mt-10 bg-purple-100 rounded-xl p-6 text-center">
+        <h3 class="text-xl font-semibold text-purple-800 mb-2">Upgrade to TaskFlow Pro</h3>
+        <p class="text-sm text-gray-700 mb-4">Get analytics, AI planning tools, calendar sync, and more.</p>
+        <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded shadow">Upgrade Now</button>
       </div>
     </section>
 
+    <!-- Footer -->
     <footer class="text-center text-purple-500 text-sm py-6">
       &copy; 2025 TaskFlow. Built with 💜 by your team.
     </footer>

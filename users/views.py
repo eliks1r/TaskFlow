@@ -74,3 +74,7 @@ def calendar_tasks(request):
             })
 
     return JsonResponse(data, safe=False)
+
+
+def pomodoro_view(request):
+    return render(request, 'users/pomodoro.html')

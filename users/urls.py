@@ -14,6 +14,7 @@ urlpatterns = [
     path('tasks/', views.task_view, name='task'),  # Путь для задач
     path('calendar/', calendar_view, name='calendar'),
     path('api/calendar-tasks/', calendar_tasks, name='calendar_tasks'),
-    
+    path("pomodoro/", views.pomodoro_view, name="pomodoro"),
+
 ]
 

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Timer | TaskFlow</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .task-item:hover .options {
+      display: inline-block;
+    }
+    .progress-bar {
+      height: 8px;
+      background-color: #ddd;
+      border-radius: 9999px;
+      overflow: hidden;
+      margin-top: 1rem;
+    }
+    .progress {
+      height: 100%;
+      background-color: #7c3aed;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-white via-violet-100 to-purple-200 min-h-screen flex flex-col items-center justify-start text-gray-900 pt-10 px-4">
+
+  <!-- Navigation -->
+  <nav class="w-full max-w-4xl mb-6 flex justify-between items-center px-6 py-4 bg-white/80 backdrop-blur-xl rounded-2xl shadow-md">
+    <h1 class="text-2xl font-bold text-purple-700">TaskFlow</h1>
+    <div class="space-x-4">
+      <a href="/auth/home/" class="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold shadow">← Back to Dashboard</a>
+      <a href="/auth/calendar/" class="bg-purple-200 hover:bg-purple-300 text-purple-800 px-4 py-2 rounded-lg font-semibold">Calendar</a>
+    </div>
+  </nav>
+
+  <div class="text-center bg-white/70 backdrop-blur-xl shadow-2xl rounded-3xl p-10 max-w-lg w-full border border-purple-300">
+    <!-- Mode Selection -->
+    <div class="flex justify-center gap-4 mb-6">
+      <button onclick="setMode('pomodoro')" id="btnPomodoro" class="px-4 py-2 rounded-full bg-purple-600 text-white font-semibold shadow">Pomodoro</button>
+      <button onclick="setMode('short')" id="btnShort" class="px-4 py-2 rounded-full bg-purple-200 text-purple-700 font-semibold shadow">Short Break</button>
+      <button onclick="setMode('long')" id="btnLong" class="px-4 py-2 rounded-full bg-purple-200 text-purple-700 font-semibold shadow">Long Break</button>
+    </div>
+
+    <!-- Timer Display -->
+    <div id="timer" class="text-7xl font-extrabold text-purple-800 mb-6 tracking-wide">25:00</div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div id="progress" class="progress w-0"></div>
+    </div>
+
+    <!-- Controls -->
+    <div class="my-4">
+      <button onclick="toggleTimer()" id="btnStart" class="text-white bg-purple-600 hover:bg-purple-700 px-8 py-3 text-xl font-bold rounded shadow-lg transition">START</button>
+      <button onclick="resetTimer()" class="ml-4 text-purple-700 border border-purple-300 px-4 py-2 rounded font-semibold hover:bg-purple-100">RESET</button>
+    </div>
+
+    <!-- Session Info -->
+    <div class="mt-6 text-lg">
+      <span id="sessionLabel" class="font-semibold">#1</span>
+      <p class="text-sm mt-1 text-gray-600">Time to focus!</p>
+    </div>
+
+    <!-- Task Manager -->
+    <div class="mt-10 text-left">
+      <h2 class="text-lg font-bold text-purple-800 mb-4">Tasks</h2>
+      <ul id="taskList" class="space-y-2 mb-4">
+        <!-- Tasks will appear here -->
+      </ul>
+      <form onsubmit="addTask(event)" class="flex gap-2">
+        <input type="text" id="taskInput" placeholder="New task..." class="flex-grow p-2 border border-purple-300 rounded">
+        <button type="submit" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    let timer;
+    let isRunning = false;
+    let currentMode = 'pomodoro';
+    let durations = {
+      pomodoro: 25 * 60,
+      short: 5 * 60,
+      long: 15 * 60
+    };
+    let time = durations.pomodoro;
+    let totalTime = time;
+    let sessionCount = 1;
+
+    const beep = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
+
+    function updateDisplay() {
+      const minutes = String(Math.floor(time / 60)).padStart(2, '0');
+      const seconds = String(time % 60).padStart(2, '0');
+      document.getElementById("timer").textContent = `${minutes}:${seconds}`;
+      const progressPercent = ((totalTime - time) / totalTime) * 100;
+      document.getElementById("progress").style.width = `${progressPercent}%`;
+    }
+
+    function toggleTimer() {
+      if (isRunning) {
+        clearInterval(timer);
+        document.getElementById("btnStart").textContent = "START";
+      } else {
+        timer = setInterval(() => {
+          if (time > 0) {
+            time--;
+            updateDisplay();
+          } else {
+            clearInterval(timer);
+            beep.play();
+            isRunning = false;
+            document.getElementById("btnStart").textContent = "START";
+            sessionCount++;
+            document.getElementById("sessionLabel").textContent = `#${sessionCount}`;
+            if (currentMode === 'pomodoro' && sessionCount % 4 === 0) {
+              setMode('long');
+            } else {
+              setMode(currentMode === 'pomodoro' ? 'short' : 'pomodoro');
+            }
+            toggleTimer();
+          }
+        }, 1000);
+        document.getElementById("btnStart").textContent = "PAUSE";
+      }
+      isRunning = !isRunning;
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      time = durations[mode];
+      totalTime = time;
+      updateDisplay();
+      document.getElementById("btnStart").textContent = "START";
+      clearInterval(timer);
+      isRunning = false;
+      ['btnPomodoro', 'btnShort', 'btnLong'].forEach(id => {
+        document.getElementById(id).classList.remove('bg-purple-600', 'text-white');
+        document.getElementById(id).classList.add('bg-purple-200', 'text-purple-700');
+      });
+      const activeBtn = {
+        pomodoro: 'btnPomodoro',
+        short: 'btnShort',
+        long: 'btnLong'
+      }[mode];
+      document.getElementById(activeBtn).classList.remove('bg-purple-200', 'text-purple-700');
+      document.getElementById(activeBtn).classList.add('bg-purple-600', 'text-white');
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      isRunning = false;
+      time = durations[currentMode];
+      totalTime = time;
+      updateDisplay();
+      document.getElementById("btnStart").textContent = "START";
+    }
+
+    function addTask(event) {
+      event.preventDefault();
+      const input = document.getElementById("taskInput");
+      const taskText = input.value.trim();
+      if (taskText) {
+        const taskItem = document.createElement("li");
+        taskItem.className = "flex justify-between items-center bg-purple-50 px-4 py-2 rounded shadow-sm task-item";
+        taskItem.innerHTML = `
+          <span>${taskText}</span>
+          <button onclick="this.parentElement.remove()" class="text-purple-500 hover:text-red-500 options">&times;</button>
+        `;
+        document.getElementById("taskList").appendChild(taskItem);
+        input.value = "";
+      }
+    }
+
+    setMode('pomodoro');
+    updateDisplay();
+  </script>
+</body>
+</html>

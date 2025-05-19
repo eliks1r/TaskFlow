@@ -26,6 +26,7 @@
         </div>
         <nav class="hidden md:flex gap-6 text-sm font-medium">
           <a href="{% url 'home' %}" class="hover:text-purple-600">Dashboard</a>
+          <a href="{% url 'pomodoro' %}" class="hover:text-purple-600">⏱ Timer</a>
           <a href="{% url 'task' %}" class="hover:text-purple-600">Tasks</a>
           <a href="{% url 'calendar' %}" class="hover:text-purple-600">Calendar</a>
           <a href="{% url 'profile' %}" class="hover:text-purple-600">Profile</a>
@@ -41,6 +42,7 @@
     <!-- MAIN -->
     <main class="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-fade-in">
       {% block content %}
+      {% block extra_scripts %}{% endblock %}
       <!-- Dynamic content goes here -->
       {% endblock %}
     </main>
